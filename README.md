@@ -3,10 +3,14 @@
 [![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-3.x-0175C2?logo=dart)](https://dart.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Privacy: 100% Offline](https://img.shields.io/badge/Privacy-100%25%20Offline-success.svg)](#privacy--security-pledge)
+[![Website](https://img.shields.io/badge/Website-qalculyn.springwebsolutions.in-6366F1?logo=googlechrome&logoColor=white)](https://qalculyn.springwebsolutions.in/)
+[![Privacy: 100% Offline](https://img.shields.io/badge/Privacy-100%25%20Offline-success.svg)](https://qalculyn.springwebsolutions.in/privacy)
 [![Tests: 35/35 Passing](https://img.shields.io/badge/Tests-35%2F35%20Passed-brightgreen.svg)](#test-suite--quality-assurance)
 
-**Qalculyn** is a modern, high-precision, 100% offline mathematics and calculator ecosystem built with Flutter for Android. Engineered for both everyday users and advanced STEM practitioners, Qalculyn blends consumer-grade ergonomics with analytical rigor.
+**Qalculyn** is a modern, high-precision, 100% offline mathematics and calculator ecosystem built with Flutter for Android by [Spring Web Solutions](https://www.springwebsolutions.in/). Engineered for both everyday users and advanced STEM practitioners, Qalculyn blends consumer-grade ergonomics with analytical rigor.
+
+- **Official Web Portal:** [https://qalculyn.springwebsolutions.in/](https://qalculyn.springwebsolutions.in/)
+- **Privacy Policy:** [https://qalculyn.springwebsolutions.in/privacy](https://qalculyn.springwebsolutions.in/privacy)
 
 ---
 
