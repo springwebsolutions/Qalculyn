@@ -12,8 +12,8 @@ class CalculusEngine {
     // Careful with functions like exp, max!
     // Replace standalone 'x' or 'X' preceded/followed by operators or boundaries
     final processed = expression.replaceAllMapped(
-      RegExp(r'(^|[^a-zA-Z0-9_])([xX])($|[^a-zA-Z0-9_])'),
-      (m) => '${m.group(1)}($x)${m.group(3)}',
+      RegExp(r'(?<![a-zA-Z0-9_])[xX](?![a-zA-Z0-9_])'),
+      (_) => '($x)',
     );
 
     final res = _calc.evaluate(processed);

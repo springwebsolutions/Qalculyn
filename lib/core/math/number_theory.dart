@@ -371,9 +371,10 @@ class NumberTheory {
     final isNeg = n < BigInt.zero;
     final absN = n.abs();
 
-    // Binary search for cube root
+    // Binary search for cube root with bit-length bound
     var low = BigInt.one;
-    var high = absN;
+    var high = BigInt.one << ((absN.bitLength ~/ 3) + 1);
+    if (high > absN) high = absN;
     while (low <= high) {
       final mid = (low + high) ~/ BigInt.two;
       final cube = mid * mid * mid;

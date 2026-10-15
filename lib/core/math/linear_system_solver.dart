@@ -95,20 +95,34 @@ class LinearSystemSolver {
     cramer.add('y = Dy / D = ${_formatNum(dy)} / ${_formatNum(d)} = ${_formatNum(y)}');
 
     // Elimination method steps
-    elim.add('\nStep 1: Eliminate variable y by matching coefficients:');
-    elim.add('Multiply Eq 1 by ${_formatNum(b2)} and Eq 2 by ${_formatNum(b1)}:');
-    final eq1Scale = '(${_formatNum(a1 * b2)})x + (${_formatNum(b1 * b2)})y = ${_formatNum(c1 * b2)}';
-    final eq2Scale = '(${_formatNum(a2 * b1)})x + (${_formatNum(b1 * b2)})y = ${_formatNum(c2 * b1)}';
-    elim.add('Scaled Eq 1: $eq1Scale');
-    elim.add('Scaled Eq 2: $eq2Scale');
+    if (b1.abs() < 1e-12) {
+      elim.add('\nStep 1: Eq 1 has no y term (${_formatTerm(a1, 'x')} = ${_formatNum(c1)}). Directly solve for x:');
+      elim.add('x = ${_formatNum(c1)} / ${_formatNum(a1)} = ${_formatNum(x)}');
+      elim.add('\nStep 2: Substitute x = ${_formatNum(x)} into Eq 2 to solve for y:');
+      elim.add('y = (${_formatNum(c2)} - (${_formatNum(a2)})(${_formatNum(x)})) / ${_formatNum(b2)}');
+      elim.add('y = ${_formatNum(y)}');
+    } else if (b2.abs() < 1e-12) {
+      elim.add('\nStep 1: Eq 2 has no y term (${_formatTerm(a2, 'x')} = ${_formatNum(c2)}). Directly solve for x:');
+      elim.add('x = ${_formatNum(c2)} / ${_formatNum(a2)} = ${_formatNum(x)}');
+      elim.add('\nStep 2: Substitute x = ${_formatNum(x)} into Eq 1 to solve for y:');
+      elim.add('y = (${_formatNum(c1)} - (${_formatNum(a1)})(${_formatNum(x)})) / ${_formatNum(b1)}');
+      elim.add('y = ${_formatNum(y)}');
+    } else {
+      elim.add('\nStep 1: Eliminate variable y by matching coefficients:');
+      elim.add('Multiply Eq 1 by ${_formatNum(b2)} and Eq 2 by ${_formatNum(b1)}:');
+      final eq1Scale = '(${_formatNum(a1 * b2)})x + (${_formatNum(b1 * b2)})y = ${_formatNum(c1 * b2)}';
+      final eq2Scale = '(${_formatNum(a2 * b1)})x + (${_formatNum(b1 * b2)})y = ${_formatNum(c2 * b1)}';
+      elim.add('Scaled Eq 1: $eq1Scale');
+      elim.add('Scaled Eq 2: $eq2Scale');
 
-    elim.add('\nStep 2: Subtract the equations:');
-    elim.add('(${_formatNum(a1 * b2 - a2 * b1)})x = ${_formatNum(c1 * b2 - c2 * b1)}');
-    elim.add('x = ${_formatNum(x)}');
+      elim.add('\nStep 2: Subtract the equations:');
+      elim.add('(${_formatNum(a1 * b2 - a2 * b1)})x = ${_formatNum(c1 * b2 - c2 * b1)}');
+      elim.add('x = ${_formatNum(x)}');
 
-    elim.add('\nStep 3: Substitute x = ${_formatNum(x)} back into Eq 1 to find y:');
-    elim.add('y = (${_formatNum(c1)} - (${_formatNum(a1)})(${_formatNum(x)})) / ${_formatNum(b1)}');
-    elim.add('y = ${_formatNum(y)}');
+      elim.add('\nStep 3: Substitute x = ${_formatNum(x)} back into Eq 1 to find y:');
+      elim.add('y = (${_formatNum(c1)} - (${_formatNum(a1)})(${_formatNum(x)})) / ${_formatNum(b1)}');
+      elim.add('y = ${_formatNum(y)}');
+    }
 
     // Exact rational fraction strings
     String xFrac = _toFractionStr(dx, d);

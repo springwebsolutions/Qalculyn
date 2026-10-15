@@ -180,7 +180,9 @@ class Tokenizer {
 
     final id = input.substring(start, _pos);
 
-    if (_constants.contains(id)) {
+    if (id == 'mod') {
+      return Token(TokenType.modulo, id, start);
+    } else if (_constants.contains(id)) {
       return Token(TokenType.constant, id, start);
     } else if (_functions.contains(id)) {
       return Token(TokenType.function_, id, start);
@@ -390,10 +392,15 @@ class ExpressionParser {
 
       // Hyperbolic
       case 'sinh':
+        if (a > 710) return double.infinity;
+        if (a < -710) return -double.infinity;
         return (math.exp(a) - math.exp(-a)) / 2;
       case 'cosh':
+        if (a.abs() > 710) return double.infinity;
         return (math.exp(a) + math.exp(-a)) / 2;
       case 'tanh':
+        if (a > 20) return 1.0;
+        if (a < -20) return -1.0;
         return (math.exp(a) - math.exp(-a)) / (math.exp(a) + math.exp(-a));
       case 'asinh':
         return math.log(a + math.sqrt(a * a + 1));
@@ -469,6 +476,7 @@ class ExpressionParser {
 
   /// Calculate factorial
   double _factorial(double value) {
+    if (value.isNaN || value.isInfinite) throw FormatException('Factorial requires a finite number');
     if (value < 0) throw FormatException('Factorial is not defined for negative numbers');
     if (value != value.truncateToDouble()) {
       throw FormatException('Factorial is only defined for non-negative integers');
@@ -487,6 +495,9 @@ class ExpressionParser {
 
   /// Calculate permutation P(n,r)
   double _permutation(double n, double r) {
+    if (n.isNaN || n.isInfinite || r.isNaN || r.isInfinite) {
+      throw FormatException('nPr requires finite numbers');
+    }
     if (n < 0 || r < 0) throw FormatException('nPr requires non-negative integers');
     if (n != n.truncateToDouble() || r != r.truncateToDouble()) {
       throw FormatException('nPr requires integers');
@@ -503,6 +514,9 @@ class ExpressionParser {
 
   /// Calculate combination C(n,r)
   double _combination(double n, double r) {
+    if (n.isNaN || n.isInfinite || r.isNaN || r.isInfinite) {
+      throw FormatException('nCr requires finite numbers');
+    }
     if (n < 0 || r < 0) throw FormatException('nCr requires non-negative integers');
     if (n != n.truncateToDouble() || r != r.truncateToDouble()) {
       throw FormatException('nCr requires integers');
@@ -591,45 +605,61 @@ class CalculatorEngine {
   }
 
   String _processContextualPercent(String expr) {
-    // Process percentage patterns from right to left
+    // Process percentage patterns iteratively
     final percentRegex = RegExp(r'(\d+\.?\d*)\s*%');
-
-    // Find all percentage occurrences
     var result = expr;
-    var matches = percentRegex.allMatches(result).toList().reversed;
 
-    for (final match in matches) {
+    while (true) {
+      final match = percentRegex.firstMatch(result);
+      if (match == null) break;
+
       final percentValue = match.group(1)!;
-      final percentPos = match.start;
+      final percentStart = match.start;
+      final percentEnd = match.end;
 
       // Look backwards to find the operator and base value
-      final before = result.substring(0, percentPos).trimRight();
+      final before = result.substring(0, percentStart).trimRight();
 
       if (before.isEmpty) {
         // Standalone percentage: N% => (N/100)
-        result = result.replaceRange(match.start, match.end, '($percentValue/100)');
+        result = result.replaceRange(percentStart, percentEnd, '($percentValue/100)');
         continue;
       }
 
       final lastChar = before[before.length - 1];
 
       if (lastChar == '+' || lastChar == '-') {
-        // Find the base expression before the operator
-        // For "200 + 10%", base is "200", operator is "+"
         final opPos = before.length - 1;
-        final baseExpr = before.substring(0, opPos).trimRight();
+        var parenDepth = 0;
+        var baseStart = 0;
 
+        for (var i = opPos - 1; i >= 0; i--) {
+          final ch = before[i];
+          if (ch == ')') {
+            parenDepth++;
+          } else if (ch == '(') {
+            if (parenDepth == 0) {
+              baseStart = i + 1;
+              break;
+            }
+            parenDepth--;
+          } else if (ch == ',' && parenDepth == 0) {
+            baseStart = i + 1;
+            break;
+          }
+        }
+
+        final baseExpr = before.substring(baseStart, opPos).trim();
         if (baseExpr.isNotEmpty) {
-          // Contextual: base +/- percent% => base +/- (base * percent / 100)
-          final replacement = '$baseExpr$lastChar($baseExpr*$percentValue/100)';
-          result = replacement + result.substring(match.end);
+          // Contextual: base +/- percent% => base +/- ((base) * percent / 100)
+          final replacement = '(($baseExpr)*$percentValue/100)';
+          result = result.replaceRange(percentStart, percentEnd, replacement);
           continue;
         }
       }
 
-      // For * and /, just convert to /100
-      // For anything else, also just convert to /100
-      result = result.replaceRange(match.start, match.end, '($percentValue/100)');
+      // For * and /, or non-contextual, convert to /100
+      result = result.replaceRange(percentStart, percentEnd, '($percentValue/100)');
     }
 
     return result;

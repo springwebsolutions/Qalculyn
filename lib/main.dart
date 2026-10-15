@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'core/design_system/theme.dart';
 import 'core/providers/calculator_provider.dart';
@@ -11,6 +12,9 @@ import 'features/calculator/calculator_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Enforce 100% offline-safe font behavior (no network fetching)
+  GoogleFonts.config.allowRuntimeFetching = false;
 
   // Set system UI overlay style
   SystemChrome.setSystemUIOverlayStyle(

@@ -97,8 +97,22 @@ class NaturalLanguageParser {
 
     // 5. Reverse GST / Pre-tax: "pre tax 1180 gst 18" or "mrp 1180 18% gst"
     if ((clean.contains('gst') || clean.contains('tax')) && (clean.contains('pre') || clean.contains('mrp') || clean.contains('reverse')) && numbers.length >= 2) {
-      final mrp = math.max(numbers[0], numbers[1]);
-      final gst = math.min(numbers[0], numbers[1]);
+      double mrp;
+      double gst;
+      final explicitGst = RegExp(r'gst\s*[:=]?\s*(\d+(?:\.\d+)?)|(\d+(?:\.\d+)?)\s*%\s*(?:gst|tax)?').firstMatch(clean);
+      if (explicitGst != null) {
+        final parsed = double.tryParse(explicitGst.group(1) ?? explicitGst.group(2) ?? '');
+        if (parsed != null && (numbers[0] == parsed || numbers[1] == parsed)) {
+          gst = parsed;
+          mrp = (numbers[0] == parsed) ? numbers[1] : numbers[0];
+        } else {
+          mrp = math.max(numbers[0], numbers[1]);
+          gst = math.min(numbers[0], numbers[1]);
+        }
+      } else {
+        mrp = math.max(numbers[0], numbers[1]);
+        gst = math.min(numbers[0], numbers[1]);
+      }
       final base = mrp / (1.0 + gst / 100.0);
       final tax = mrp - base;
       return NaturalLanguageResult(

@@ -11,7 +11,10 @@ class Matrix {
   Matrix(this.rows, this.cols, List<List<double>> elements)
       : data = List.generate(
           rows,
-          (i) => List.generate(cols, (j) => elements[i][j]),
+          (i) => List.generate(
+            cols,
+            (j) => (i < elements.length && j < elements[i].length) ? elements[i][j] : 0.0,
+          ),
         );
 
   factory Matrix.zeros(int rows, int cols) {
@@ -46,8 +49,12 @@ class Matrix {
           final items = m.group(1)!.split(RegExp(r'[,;\s]+')).where((s) => s.isNotEmpty);
           rowsList.add(items.map(double.parse).toList());
         }
+        if (rowsList.isEmpty) throw const FormatException('Empty matrix');
         final r = rowsList.length;
         final c = rowsList[0].length;
+        if (rowsList.any((row) => row.length != c)) {
+          throw const FormatException('Inconsistent matrix dimensions: all rows must have the same number of columns');
+        }
         return Matrix(r, c, rowsList);
       }
     }
@@ -65,6 +72,9 @@ class Matrix {
     if (rowsList.isEmpty) throw const FormatException('Empty matrix');
     final r = rowsList.length;
     final c = rowsList[0].length;
+    if (rowsList.any((row) => row.length != c)) {
+      throw const FormatException('Inconsistent matrix dimensions: all rows must have the same number of columns');
+    }
     return Matrix(r, c, rowsList);
   }
 

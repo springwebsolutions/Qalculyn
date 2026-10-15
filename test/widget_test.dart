@@ -641,4 +641,120 @@ void main() {
       expect(find.text('10'), findsWidgets);
     });
   });
+
+  group('Audit Verification & Hardening Tests', () {
+    test('CalculusEngine consecutive variables', () {
+      final calc = CalculusEngine();
+      expect(calc.evaluate('x*x', 3.0), closeTo(9.0, 1e-6));
+      expect(calc.evaluate('x+x+x', 2.0), closeTo(6.0, 1e-6));
+      expect(calc.evaluate('(x)*(x)', 4.0), closeTo(16.0, 1e-6));
+      expect(calc.evaluate('x^2 - 2*x + 1', 5.0), closeTo(16.0, 1e-6));
+    });
+
+    test('CalculatorEngine hyperbolic overflow guards', () {
+      final engine = CalculatorEngine();
+      final resTanh = engine.evaluate('tanh(50)');
+      expect(resTanh.isSuccess, isTrue);
+      expect(resTanh.value, equals(1.0));
+
+      final resTanhNeg = engine.evaluate('tanh(-50)');
+      expect(resTanhNeg.isSuccess, isTrue);
+      expect(resTanhNeg.value, equals(-1.0));
+
+      final resSinh = engine.evaluate('sinh(800)');
+      expect(resSinh.isError, isTrue);
+      expect(resSinh.error, equals('Result is too large'));
+
+      final resCosh = engine.evaluate('cosh(800)');
+      expect(resCosh.isError, isTrue);
+      expect(resCosh.error, equals('Result is too large'));
+    });
+
+    test('CalculatorEngine modulo keyword support', () {
+      final engine = CalculatorEngine();
+      final res1 = engine.evaluate('10 mod 3');
+      expect(res1.isSuccess, isTrue);
+      expect(res1.value, equals(1.0));
+
+      final res2 = engine.evaluate('25 mod 7');
+      expect(res2.isSuccess, isTrue);
+      expect(res2.value, equals(4.0));
+    });
+
+    test('CalculatorEngine contextual percentage chaining and precedence', () {
+      final engine = CalculatorEngine();
+      final res1 = engine.evaluate('100 + 200 + 10%');
+      expect(res1.isSuccess, isTrue);
+      expect(res1.value, equals(330.0));
+
+      final res2 = engine.evaluate('(200 + 10%) * 2');
+      expect(res2.isSuccess, isTrue);
+      expect(res2.value, equals(440.0));
+
+      final res3 = engine.evaluate('100 - 10%');
+      expect(res3.isSuccess, isTrue);
+      expect(res3.value, equals(90.0));
+    });
+
+    test('Matrix ragged row validation', () {
+      expect(() => Matrix.parse('1 2; 3 4 5'), throwsA(isA<FormatException>()));
+      expect(() => Matrix.parse('[[1, 2], [3]]'), throwsA(isA<FormatException>()));
+
+      final m = Matrix.parse('1 2; 3 4');
+      expect(m.rows, equals(2));
+      expect(m.cols, equals(2));
+    });
+
+    test('AlgebraEngine quadratic vertex calculation', () {
+      // y = x^2 - 4x + 4 => vertex is (2, 0)
+      final res = EquationSolver.solveQuadratic(
+        BigRational.one,
+        BigRational.fromInt(-4),
+        BigRational.fromInt(4),
+      );
+      expect(res['vertex'], equals('(2, 0)'));
+    });
+
+    test('LinearSystemSolver elimination steps with zero coefficient', () {
+      // 2x = 4, x + 3y = 7 => b1 = 0
+      final res = LinearSystemSolver.solve2x2(2, 0, 4, 1, 3, 7);
+      expect(res.status, equals(SystemSolutionStatus.unique));
+      expect(res.solution!['x'], closeTo(2.0, 1e-9));
+      expect(res.solution!['y'], closeTo(1.6666666, 1e-5));
+      expect(res.eliminationSteps.any((s) => s.contains('Directly solve for x')), isTrue);
+      expect(res.eliminationSteps.any((s) => s.contains('/ 0')), isFalse);
+    });
+
+    test('CalculatorProvider clearEntry and memoryRecall cursor updates', () {
+      final settings = SettingsProvider();
+      final provider = CalculatorProvider(settings);
+
+      // Type 12 + 34
+      provider.inputDigit('1');
+      provider.inputDigit('2');
+      provider.inputOperator('+');
+      provider.inputDigit('3');
+      provider.inputDigit('4');
+      expect(provider.expression, equals('12+34'));
+      expect(provider.cursorPosition, equals(5));
+
+      // clearEntry removes '+34', leaving '12'
+      provider.clearEntry();
+      expect(provider.expression, equals('12'));
+      expect(provider.cursorPosition, equals(2));
+
+      // Test memoryStore and memoryRecall at cursor
+      provider.memoryStore(); // stores current display
+      provider.inputDigit('5');
+      // expression is 12+5, move cursor between 12 and +
+      provider.setCursorPosition(2);
+      expect(provider.cursorPosition, equals(2));
+    });
+
+    test('NumberTheory isPerfectCube bit-length bound', () {
+      expect(NumberTheory.isPerfectCube(BigInt.from(1000000)), equals((true, BigInt.from(100))));
+      expect(NumberTheory.isPerfectCube(BigInt.from(-27)), equals((true, BigInt.from(-3))));
+      expect(NumberTheory.isPerfectCube(BigInt.from(28)), equals((false, BigInt.zero)));
+    });
+  });
 }

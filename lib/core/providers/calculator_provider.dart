@@ -355,6 +355,7 @@ class CalculatorProvider extends ChangeNotifier {
     } else {
       _expression = '';
     }
+    _cursorPosition = _expression.length;
     _hasError = false;
     _evaluatePreview();
     notifyListeners();
@@ -454,9 +455,10 @@ class CalculatorProvider extends ChangeNotifier {
       final val = _formatter.formatForExpression(_memoryValue!);
       if (_resultDisplayed) {
         _expression = val;
+        _cursorPosition = val.length;
         _resultDisplayed = false;
       } else {
-        _expression += val;
+        _insertText(val);
       }
       _evaluatePreview();
       notifyListeners();

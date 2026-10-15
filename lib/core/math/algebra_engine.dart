@@ -222,13 +222,20 @@ class Polynomial {
 
         var c = BigRational.one;
         if (coeffStr.isNotEmpty) {
-          c = BigRational.parse(coeffStr);
+          try {
+            c = BigRational.parse(coeffStr);
+          } catch (_) {
+            c = BigRational.one;
+          }
         }
         if (isNeg) c = -c;
 
         var exp = 1;
         if (expPart.startsWith('^')) {
-          exp = int.parse(expPart.substring(1));
+          final expDigits = expPart.substring(1).trim();
+          exp = int.tryParse(expDigits) ?? 1;
+        } else if (expPart.isNotEmpty) {
+          exp = int.tryParse(expPart.trim()) ?? 1;
         }
 
         coeffMap[exp] = (coeffMap[exp] ?? BigRational.zero) + c;
@@ -468,22 +475,27 @@ class EquationSolver {
       }
     }
 
+    final twoA = BigRational.fromInt(2) * a;
+    final fourA = BigRational.fromInt(4) * a;
+    final vertexX = -b / twoA;
+    final vertexY = c - ((b * b) / fourA);
+    final vertexStr = '($vertexX, $vertexY)';
+
     if (disc.isZero) {
-      final root = -b / (BigRational.fromInt(2) * a);
+      final root = -b / twoA;
       steps.add('Step 2: Δ = 0 implies exactly one repeated real root.');
-      steps.add('Step 3: x = -b / (2a) = ${-b} / (${BigRational.fromInt(2) * a}) = $root');
+      steps.add('Step 3: x = -b / (2a) = ${-b} / ($twoA) = $root');
       return {
         'status': 'repeated',
         'discriminant': disc,
         'root1': root,
         'root2': root,
         'steps': steps,
-        'vertex': '(${(-b / (BigRational.fromInt(2) * a))}, $c)',
+        'vertex': vertexStr,
       };
     } else if (disc.isPositive) {
       steps.add('Step 2: Δ > 0 implies two distinct real roots.');
       if (isSquare && sqrtDisc != null) {
-        final twoA = BigRational.fromInt(2) * a;
         final root1 = (-b + sqrtDisc) / twoA;
         final root2 = (-b - sqrtDisc) / twoA;
         steps.add('Step 3: √Δ = $sqrtDisc (exact rational)');
@@ -497,13 +509,14 @@ class EquationSolver {
           'root1Double': root1.toDouble(),
           'root2Double': root2.toDouble(),
           'steps': steps,
+          'vertex': vertexStr,
         };
       } else {
         final sqrtD = math.sqrt(discDouble);
-        final twoA = (BigRational.fromInt(2) * a).toDouble();
+        final twoADouble = twoA.toDouble();
         final bDouble = b.toDouble();
-        final r1 = (-bDouble + sqrtD) / twoA;
-        final r2 = (-bDouble - sqrtD) / twoA;
+        final r1 = (-bDouble + sqrtD) / twoADouble;
+        final r2 = (-bDouble - sqrtD) / twoADouble;
         steps.add('Step 3: √Δ ≈ ${sqrtD.toStringAsFixed(6)}');
         steps.add('x₁ ≈ ${r1.toStringAsFixed(6)}');
         steps.add('x₂ ≈ ${r2.toStringAsFixed(6)}');
@@ -513,13 +526,14 @@ class EquationSolver {
           'root1Double': r1,
           'root2Double': r2,
           'steps': steps,
+          'vertex': vertexStr,
         };
       }
     } else {
       // Complex roots
-      final twoA = (BigRational.fromInt(2) * a).toDouble();
-      final realPart = -b.toDouble() / twoA;
-      final imagPart = math.sqrt(-discDouble) / twoA;
+      final twoADouble = twoA.toDouble();
+      final realPart = -b.toDouble() / twoADouble;
+      final imagPart = math.sqrt(-discDouble) / twoADouble;
       steps.add('Step 2: Δ < 0 implies two complex conjugate roots.');
       steps.add('Real Part: -b / (2a) = ${realPart.toStringAsFixed(4)}');
       steps.add('Imaginary Part: √(|$disc|) / (2a) = ${imagPart.abs().toStringAsFixed(4)}');
@@ -531,6 +545,7 @@ class EquationSolver {
         'realPart': realPart,
         'imagPart': imagPart.abs(),
         'steps': steps,
+        'vertex': vertexStr,
       };
     }
   }
