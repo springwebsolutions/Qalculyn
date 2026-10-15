@@ -612,6 +612,94 @@
       line-height: 1.6;
     }
 
+    /* Solvers Showcase */
+    .solvers-section {
+      padding: 70px 0;
+      position: relative;
+    }
+
+    .solvers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    @media (max-width: 860px) {
+      .solvers-grid { grid-template-columns: 1fr; }
+    }
+
+    .solver-card {
+      background: var(--color-card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      padding: 32px;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .solver-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--color-border-glow);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+    }
+
+    .solver-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .solver-tag {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-brand-emerald);
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    .solver-card h3 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .solver-card p {
+      font-size: 14px;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .solver-preview-box {
+      background: rgba(7, 10, 19, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 16px;
+      font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    .solver-preview-box .highlight-step {
+      color: #a5b4fc;
+      font-weight: 600;
+    }
+
+    .solver-preview-box .result-step {
+      color: #34d399;
+      font-weight: 700;
+    }
+
     /* Comparison Table */
     .compare-section {
       padding: 80px 0;
@@ -938,6 +1026,78 @@
           <div class="feature-icon-box">&#128274;</div>
           <h3>100% Offline &amp; AMOLED Dark</h3>
           <p>Operates with zero internet permission in its Android manifest. Includes curated color themes and a true AMOLED pure black (#000000) mode for OLED battery savings.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solvers Showcase -->
+  <section id="solvers" class="solvers-section">
+    <div class="container">
+      <div class="section-title-wrap">
+        <h2 class="section-title">Dedicated Mathematical Solvers</h2>
+        <p class="section-sub">From Horner polynomial synthetic division to simultaneous multi-variable systems, Qalculyn handles advanced STEM workflows on-device.</p>
+      </div>
+
+      <div class="solvers-grid">
+        <!-- Solver 1 -->
+        <div class="solver-card">
+          <div class="solver-header">
+            <span class="solver-tag">Simultaneous Linear Systems</span>
+            <span style="color: #818cf8; font-size: 13px; font-weight: 600;">2x2 &amp; 3x3 Matrices</span>
+          </div>
+          <h3>Cramer's Rule &amp; Elimination</h3>
+          <p>Solves multi-variable linear equation systems with step-by-step determinant derivations, augmented matrix echelon reduction, and consistency validation.</p>
+          <div class="solver-preview-box">
+            <div><span class="highlight-step">System:</span> 2x + 3y = 12 &nbsp;|&nbsp; 5x - y = 13</div>
+            <div><span class="highlight-step">Det(A):</span> (2)(-1) - (3)(5) = -17 &ne; 0</div>
+            <div><span class="result-step">&rArr; Solution:</span> x = 3.00, &nbsp; y = 2.00</div>
+          </div>
+        </div>
+
+        <!-- Solver 2 -->
+        <div class="solver-card">
+          <div class="solver-header">
+            <span class="solver-tag">Polynomial Division Studio</span>
+            <span style="color: #818cf8; font-size: 13px; font-weight: 600;">Long &amp; Synthetic</span>
+          </div>
+          <h3>Horner Scheme &amp; Long Division</h3>
+          <p>Divides arbitrary-degree polynomials with step-by-step Horner synthetic tableaux or algebraic long division, displaying both quotient Q(x) and remainder R(x).</p>
+          <div class="solver-preview-box">
+            <div><span class="highlight-step">P(x) / D(x):</span> (x&sup3; - 6x&sup2; + 11x - 6) &divide; (x - 2)</div>
+            <div><span class="highlight-step">Horner:</span> 2 | 1 &nbsp; -6 &nbsp; 11 &nbsp; -6 &rarr; Remainder = 0</div>
+            <div><span class="result-step">&rArr; Q(x):</span> x&sup2; - 4x + 3 &nbsp;(Exact Factor)</div>
+          </div>
+        </div>
+
+        <!-- Solver 3 -->
+        <div class="solver-card">
+          <div class="solver-header">
+            <span class="solver-tag">Number Theory &amp; Integers</span>
+            <span style="color: #818cf8; font-size: 13px; font-weight: 600;">BigInt Precision</span>
+          </div>
+          <h3>Euclidean GCD/LCM &amp; Primes</h3>
+          <p>Arbitrary-precision Euclidean greatest common divisor, prime factorization tree, modular exponentiation, Extended Euclidean Bézout identity, and Euler totient &phi;(n).</p>
+          <div class="solver-preview-box">
+            <div><span class="highlight-step">Euclidean:</span> GCD(840, 198) = 6 &nbsp;|&nbsp; LCM = 27,720</div>
+            <div><span class="highlight-step">Factors:</span> 840 = 2&sup3; &times; 3 &times; 5 &times; 7</div>
+            <div><span class="result-step">&rArr; Fraction:</span> 198/840 simplified to 33/140</div>
+          </div>
+        </div>
+
+        <!-- Solver 4 -->
+        <div class="solver-card">
+          <div class="solver-header">
+            <span class="solver-tag">Calculus &amp; Geometry</span>
+            <span style="color: #818cf8; font-size: 13px; font-weight: 600;">Numerical Quadrature</span>
+          </div>
+          <h3>Derivatives &amp; Simpson's Rule</h3>
+          <p>Numerical first/second derivatives, tangent &amp; normal line equations, Simpson's 1/3 rule definite integration, and real-time vector geometry canvas dimensioning.</p>
+          <div class="solver-preview-box">
+            <div><span class="highlight-step">Definite Integral:</span> &int;[0 &rarr; &pi;] sin(x) dx</div>
+            <div><span class="highlight-step">Simpson's Quad:</span> 100 intervals (Tolerance 1e-7)</div>
+            <div><span class="result-step">&rArr; Numerical Area:</span> 2.00000000</div>
+          </div>
         </div>
       </div>
     </div>
