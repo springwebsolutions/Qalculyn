@@ -1,124 +1,560 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Qalculyn | Spring Web Solutions</title>
-    <style>
-        :root {
-            --primary: #6366f1;
-            --bg: #0f172a;
-            --card-bg: #1e293b;
-            --text: #f8fafc;
-            --text-muted: #94a3b8;
-            --border: #334155;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | Qalculyn — Spring Web Solutions</title>
+  
+  <!-- SEO & Googlebot Meta Tags -->
+  <meta name="description" content="Official Privacy Policy for Qalculyn (com.sws.qalculyn) by Spring Web Solutions. Zero personal data collection, 100% offline mathematical computing with zero internet permissions.">
+  <meta name="keywords" content="Qalculyn privacy policy, Spring Web Solutions, offline calculator privacy, Google Play data safety, com.sws.qalculyn">
+  <meta name="author" content="Spring Web Solutions">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://qalculyn.springwebsolutions.in/privacy">
+  
+  <!-- OpenGraph & Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Privacy Policy | Qalculyn — Spring Web Solutions">
+  <meta property="og:description" content="Official Privacy Policy for Qalculyn: 100% offline, zero network permissions, zero tracking, zero data collection.">
+  <meta property="og:url" content="https://qalculyn.springwebsolutions.in/privacy">
+  <meta property="og:site_name" content="Spring Web Solutions">
+  <meta property="og:image" content="https://www.springwebsolutions.in/logo-emblem.png">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Privacy Policy | Qalculyn — Spring Web Solutions">
+  <meta name="twitter:description" content="Official Privacy Policy for Qalculyn: 100% offline, zero tracking, zero data collection.">
+  <meta name="twitter:image" content="https://www.springwebsolutions.in/logo-emblem.png">
+
+  <!-- Favicon & Branding -->
+  <link rel="icon" type="image/png" sizes="512x512" href="https://www.springwebsolutions.in/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.springwebsolutions.in/logo-emblem.png">
+  
+  <!-- Google Fonts (Matching springwebsolutions.in) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- JSON-LD Structured Data for Googlebot & Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://qalculyn.springwebsolutions.in/privacy#webpage",
+        "url": "https://qalculyn.springwebsolutions.in/privacy",
+        "name": "Privacy Policy for Qalculyn",
+        "description": "Comprehensive Privacy Policy for the Qalculyn Android application, developed by Spring Web Solutions.",
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": "https://qalculyn.springwebsolutions.in/#website",
+          "name": "Qalculyn",
+          "url": "https://qalculyn.springwebsolutions.in"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Spring Web Solutions",
+          "url": "https://www.springwebsolutions.in",
+          "logo": "https://www.springwebsolutions.in/logo-emblem.png"
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            padding: 40px 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-        .brand {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--primary);
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        h1 {
-            font-size: 28px;
-            margin-bottom: 6px;
-            color: #ffffff;
-        }
-        .date {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 28px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 16px;
-        }
-        h2 {
-            font-size: 18px;
-            margin: 24px 0 10px;
-            color: #e2e8f0;
-        }
-        p {
-            color: var(--text-muted);
-            margin-bottom: 14px;
-            font-size: 15px;
-        }
-        ul {
-            margin: 8px 0 16px 24px;
-            color: var(--text-muted);
-            font-size: 15px;
-        }
-        li { margin-bottom: 6px; }
-        .footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border);
-            font-size: 13px;
-            color: var(--text-muted);
-            text-align: center;
-        }
-        .footer a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-    </style>
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Qalculyn",
+            "item": "https://qalculyn.springwebsolutions.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Privacy Policy",
+            "item": "https://qalculyn.springwebsolutions.in/privacy"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --color-brand-emerald: #10b981;
+      --color-brand-emerald-glow: rgba(16, 185, 129, 0.25);
+      --color-brand-indigo: #6366f1;
+      --color-brand-indigo-hover: #4f46e5;
+      --color-brand-obsidian: #070a13;
+      --color-brand-dark: #0f172a;
+      --color-card-bg: rgba(15, 23, 42, 0.75);
+      --color-border: rgba(255, 255, 255, 0.08);
+      --color-text: #f8fafc;
+      --color-text-muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--color-brand-obsidian);
+      color: var(--color-text);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient background glows matching springwebsolutions.in */
+    .ambient-glow-1 {
+      position: fixed;
+      top: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ambient-glow-2 {
+      position: fixed;
+      bottom: -100px;
+      left: -100px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Navigation Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(7, 10, 19, 0.85);
+      border-bottom: 1px solid var(--color-border);
+      padding: 16px 24px;
+    }
+
+    .header-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .logo-img {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+    }
+
+    .logo-titles {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+    }
+
+    .brand-subtitle {
+      font-size: 11px;
+      color: var(--color-brand-emerald);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-weight: 600;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: #ffffff;
+    }
+
+    .btn-header {
+      background: linear-gradient(135deg, var(--color-brand-indigo), var(--color-brand-indigo-hover));
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-header:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      max-width: 900px;
+      width: 100%;
+      margin: 40px auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card {
+      background: var(--color-card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      padding: 48px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    @media (max-width: 640px) {
+      .card { padding: 24px; }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--color-brand-emerald);
+      margin-bottom: 16px;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-brand-emerald);
+      box-shadow: 0 0 8px var(--color-brand-emerald);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 36px);
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .meta-date {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .policy-lead {
+      font-size: 16px;
+      color: #e2e8f0;
+      margin-bottom: 28px;
+      line-height: 1.8;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 32px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-num {
+      color: var(--color-brand-indigo);
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    p {
+      color: var(--color-text-muted);
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
+
+    ul {
+      margin: 8px 0 20px 24px;
+      color: var(--color-text-muted);
+      font-size: 15px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    li strong {
+      color: #e2e8f0;
+    }
+
+    .highlight-box {
+      background: rgba(99, 102, 241, 0.08);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 24px 0;
+    }
+
+    .highlight-box h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0;
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+
+    code {
+      font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #a5b4fc;
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 16px;
+    }
+
+    .contact-card a {
+      color: var(--color-brand-indigo);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--color-border);
+      background: rgba(7, 10, 19, 0.95);
+      padding: 32px 20px;
+      font-size: 13px;
+      color: var(--color-text-muted);
+      text-align: center;
+      margin-top: auto;
+      position: relative;
+      z-index: 10;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="brand">Spring Web Solutions</div>
-        <h1>Privacy Policy for Qalculyn</h1>
-        <div class="date">Effective Date: October 15, 2026 | Last Updated: October 15, 2026</div>
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
 
-        <p><strong>Qalculyn</strong> (&ldquo;the app&rdquo;), developed and published by <strong>Spring Web Solutions</strong> (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;), is designed as a privacy-first, 100% offline mathematics and calculation utility. This Privacy Policy explains our practices regarding user data.</p>
-
-        <h2>1. Zero Personal Data Collection</h2>
-        <p>Qalculyn does <strong>not</strong> collect, harvest, store, transmit, or share any personal identifiable information (PII). We do not require accounts, logins, emails, contact lists, or phone numbers.</p>
-
-        <h2>2. 100% Offline Functionality</h2>
-        <p>Qalculyn operates entirely offline. The application does not request the <code>android.permission.INTERNET</code> permission in its Android manifest. All mathematical calculations, solver operations, and user study notes execute and remain exclusively on your local device.</p>
-
-        <h2>3. Device Storage and Local Data</h2>
-        <ul>
-            <li><strong>Calculation History &amp; Notes:</strong> Stored strictly in an app-scoped local SQLite database on your device.</li>
-            <li><strong>User Preferences:</strong> Display modes and color theme selections are saved locally via Android SharedPreferences.</li>
-            <li>You can clear all stored calculations at any time from within the app settings or via Android system settings.</li>
-        </ul>
-
-        <h2>4. No Advertisements or Third-Party Analytics</h2>
-        <p>Qalculyn contains no third-party advertising SDKs, tracking libraries, or diagnostic trackers (such as Google Analytics or Firebase). Your usage data is neither tracked nor monetized.</p>
-
-        <h2>5. Permissions Audit</h2>
-        <p>Qalculyn requests zero sensitive device permissions. It does not access your location, camera, microphone, photos, files, or contacts.</p>
-
-        <h2>6. Children&rsquo;s Privacy</h2>
-        <p>Because the app collects no user data whatsoever, it is fully compliant with COPPA, GDPR, and Google Play Families Policies.</p>
-
-        <h2>7. Contact Information</h2>
-        <p>For inquiries regarding Qalculyn or this policy, please reach out to:</p>
-        <p><strong>Spring Web Solutions</strong><br>
-        Website: <a href="https://www.springwebsolutions.in/">https://www.springwebsolutions.in/</a><br>
-        Application: Qalculyn (com.sws.qalculyn)</p>
-
-        <div class="footer">
-            &copy; 2026 Spring Web Solutions. All rights reserved.
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <a href="https://qalculyn.springwebsolutions.in/" class="logo-group">
+        <img src="https://www.springwebsolutions.in/logo-emblem.png" alt="Spring Web Solutions Logo" class="logo-img">
+        <div class="logo-titles">
+          <span class="brand-name">Qalculyn</span>
+          <span class="brand-subtitle">Spring Web Solutions</span>
         </div>
+      </a>
+
+      <nav class="nav-actions">
+        <a href="https://qalculyn.springwebsolutions.in/" class="nav-link">Home</a>
+        <a href="https://github.com/springwebsolutions/Qalculyn" target="_blank" rel="noopener noreferrer" class="nav-link">GitHub</a>
+        <a href="https://www.springwebsolutions.in/" target="_blank" rel="noopener noreferrer" class="btn-header">
+          Spring Web Solutions &rarr;
+        </a>
+      </nav>
     </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <article class="card">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Google Play Policy &amp; Data Safety Compliant
+      </div>
+
+      <h1>Privacy Policy for Qalculyn</h1>
+      <div class="meta-date">
+        <strong>Effective Date:</strong> October 15, 2026 &nbsp;|&nbsp; 
+        <strong>Last Updated:</strong> October 15, 2026 &nbsp;|&nbsp; 
+        <strong>Application ID:</strong> <code>com.sws.qalculyn</code>
+      </div>
+
+      <p class="policy-lead">
+        <strong>Qalculyn</strong> (&ldquo;the app&rdquo;) is an offline mathematical computing system and calculator engineered and published by <strong>Spring Web Solutions</strong> (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;). We believe user privacy is a fundamental right. This Privacy Policy details our architecture, principles, and full compliance with the Google Play Developer Content Policy and international privacy standards.
+      </p>
+
+      <div class="highlight-box">
+        <h3>Privacy Summary: 100% Offline &amp; Zero Tracking</h3>
+        <p>Qalculyn collects zero personal data, contains zero third-party ads, requires zero network connectivity, and does not even request the <code>android.permission.INTERNET</code> permission. Your data never leaves your physical device.</p>
+      </div>
+
+      <h2><span class="section-num">1.</span> Zero Personal Data Collection</h2>
+      <p>
+        Qalculyn does <strong>not</strong> collect, harvest, log, or transmit any Personally Identifiable Information (PII). We do not require account registration, passwords, emails, contact lists, physical addresses, or phone numbers to use any part of the application.
+      </p>
+
+      <h2><span class="section-num">2.</span> Physical 100% Offline Architecture</h2>
+      <p>
+        The application is engineered exclusively for local on-device execution:
+      </p>
+      <ul>
+        <li><strong>No Internet Permission:</strong> The Android permission <code>android.permission.INTERNET</code> is completely omitted from the application's <code>AndroidManifest.xml</code>. The Android OS physically prevents the app from opening network sockets.</li>
+        <li><strong>Local Processing:</strong> All scientific computations, equation solvers, calculus algorithms, geometry canvas computations, and step explanations run entirely on your device's local CPU.</li>
+        <li><strong>No Telemetry or Remote Crash Reports:</strong> We do not embed remote diagnostic reporters, performance monitors, or telemetry SDKs.</li>
+      </ul>
+
+      <h2><span class="section-num">3.</span> Local Storage &amp; User Notes</h2>
+      <p>
+        Any data created by you during calculation workflows is stored strictly within Android app-scoped internal storage:
+      </p>
+      <ul>
+        <li><strong>Calculation History &amp; Custom Study Notes:</strong> Persisted in a local, unshared SQLite database stored within the app's sandboxed data partition.</li>
+        <li><strong>User Preferences:</strong> Dark mode preference, AMOLED mode toggle, and chosen theme accent colors are saved locally via Android SharedPreferences.</li>
+        <li><strong>Data Deletion:</strong> You have full control. You can wipe your calculation history at any time using the &ldquo;Clear All&rdquo; option inside the History sheet, or by tapping &ldquo;Clear Storage&rdquo; in Android System Settings.</li>
+      </ul>
+
+      <h2><span class="section-num">4.</span> Zero Third-Party Advertising &amp; Tracking</h2>
+      <p>
+        Qalculyn is entirely ad-free:
+      </p>
+      <ul>
+        <li>We do not embed Google AdMob, Unity Ads, Meta Audience Network, or any other ad broker SDKs.</li>
+        <li>We do not integrate Google Analytics for Firebase, Facebook Pixel, Mixpanel, or third-party behavioral trackers.</li>
+        <li>Your math expressions, problem notes, and usage behavior are never monetized, sold, or shared with third parties.</li>
+      </ul>
+
+      <h2><span class="section-num">5.</span> Android Device Permissions Audit</h2>
+      <p>
+        Qalculyn adheres to the principle of least privilege and requests <strong>zero dangerous permissions</strong>:
+      </p>
+      <ul>
+        <li>No Camera or Video Recording access</li>
+        <li>No Microphone or Audio Recording access</li>
+        <li>No GPS or Network Location access</li>
+        <li>No Contacts or Calendar access</li>
+        <li>No External Storage / Media Library access</li>
+        <li>No Background Service or Auto-start on boot access</li>
+      </ul>
+
+      <h2><span class="section-num">6.</span> Children's Online Privacy &amp; Family Policies</h2>
+      <p>
+        Because Qalculyn collects zero personal information, transmits no network packets, and contains no advertisements or user-generated communications, it fully conforms with:
+      </p>
+      <ul>
+        <li>The United States Children's Online Privacy Protection Act (<strong>COPPA</strong>).</li>
+        <li>The European Union General Data Protection Regulation (<strong>GDPR / GDPR-K</strong>).</li>
+        <li>The <strong>Google Play Families Policy</strong> requirements.</li>
+      </ul>
+
+      <h2><span class="section-num">7.</span> Google Play Data Safety Declaration Summary</h2>
+      <p>
+        When reviewing Qalculyn on the Google Play Store, our Data Safety declaration is transparent and verifiable:
+      </p>
+      <ul>
+        <li><strong>Data Collected:</strong> No data collected.</li>
+        <li><strong>Data Shared:</strong> No data shared with third parties.</li>
+        <li><strong>Security Practices:</strong> Data is not transmitted because there is no network connection.</li>
+      </ul>
+
+      <h2><span class="section-num">8.</span> Contact &amp; Publisher Information</h2>
+      <p>
+        If you have questions, feedback, or inquiries regarding this Privacy Policy or the security of Qalculyn, please reach out to:
+      </p>
+      
+      <div class="contact-card">
+        <p><strong>Spring Web Solutions</strong></p>
+        <p>Email: <a href="mailto:solutionsspringweb@gmail.com">solutionsspringweb@gmail.com</a></p>
+        <p>Website: <a href="https://www.springwebsolutions.in/" target="_blank" rel="noopener noreferrer">https://www.springwebsolutions.in/</a></p>
+        <p>App Subdomain: <a href="https://qalculyn.springwebsolutions.in/">https://qalculyn.springwebsolutions.in/</a></p>
+        <p>Headquarters: Udumalpet (Udumalaipettai), Tamil Nadu, India</p>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="https://qalculyn.springwebsolutions.in/">Qalculyn Home</a>
+      <a href="https://qalculyn.springwebsolutions.in/privacy">Privacy Policy</a>
+      <a href="https://www.springwebsolutions.in/" target="_blank" rel="noopener noreferrer">Spring Web Solutions</a>
+      <a href="https://github.com/springwebsolutions/Qalculyn" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <p>&copy; 2026 Spring Web Solutions. All rights reserved. Engineered for offline privacy and mathematical precision.</p>
+  </footer>
 </body>
 </html>
